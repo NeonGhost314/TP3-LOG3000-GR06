@@ -11,6 +11,17 @@ OPS = {
 }
 
 def calculate(expr: str):
+    """Évalue l'expression saisie dans l'affichage de la calculatrice.
+
+    Paramètres :
+        expr (str) : Chaîne brute soumise par le client (par exemple, "3+4").
+
+    Retourne :
+        float : Résultat numérique produit par l'opérateur mappé.
+
+    Lève :
+        ValueError : Levée lorsque l'expression est vide, mal formée ou que les opérandes sont invalides.
+    """
     if not expr or not isinstance(expr, str):
         raise ValueError("empty expression")
 
@@ -27,7 +38,7 @@ def calculate(expr: str):
             op_char = ch
 
     if op_pos <= 0 or op_pos >= len(s) - 1:
-        # operator at start/end or not found
+        # opérateur au début/fin ou non trouvé
         raise ValueError("invalid expression format")
 
     left = s[:op_pos]
@@ -43,6 +54,7 @@ def calculate(expr: str):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    """Sert l'interface de la calculatrice et retourne les résultats au client."""
     result = ""
     if request.method == 'POST':
         expression = request.form.get('display', '')

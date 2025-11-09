@@ -9,7 +9,9 @@
 <body>
 <div class="calculator">
    <h1>Flask Calculator</h1>
+   <!-- Formulaire POST pour envoyer l'expression au serveur -->
    <form method="POST">
+      <!-- Champ readonly pour empêcher la saisie manuelle dans l'affichage -->
       <input type="text" name="display" id="display" value="{{ result }}" readonly>
 
       <div class="buttons">
@@ -37,11 +39,19 @@
 </div>
 
 <script>
+
+     /**
+    * Ajoute un caractère à l'affichage.
+    * @param {string} value - Caractère à ajouter (chiffre ou opérateur)
+    */
    function appendToDisplay(value) {
       const display = document.getElementById('display');
       display.value += value;
    }
 
+    /**
+    * Réinitialise l'affichage de la calculatrice.
+    */
    function clearDisplay() {
       document.getElementById('display').value = '';
    }
